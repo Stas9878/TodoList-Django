@@ -1,7 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def index(request) -> HttpResponse:
-    return render(request, 'index.html')
+    if not request.user.is_authenticated:
+        return redirect('users:register_user')
 
+    
