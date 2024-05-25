@@ -18,6 +18,7 @@ class RegisterForm(UserCreationForm):
             'username': 'Ivan123',
             'email': 'ivan-123@todo.com',
         }
+        
 
 
 class LoginForm(forms.Form):
@@ -30,7 +31,3 @@ class LoginForm(forms.Form):
     
     class Meta:
         model = get_user_model()
-
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        return username

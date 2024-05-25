@@ -1,0 +1,47 @@
+.bg-image{
+    background: url("/static/img/background.jpeg");
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+}
+
+.gradient-custom-3 {
+    /* fallback for old browsers */
+    background: #a66b13;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(185, 98, 11, 0.5), rgba(120, 89, 214, 0.5));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(185, 98, 11, 0.5), rgba(120, 89, 214, 0.5));
+    }
+    .gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84fab0;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(185, 98, 11, 0.5), rgba(120, 89, 214, 0.5));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(185, 98, 11, 0.5), rgba(120, 89, 214, 0.5));
+    }
+
+
+.my_btn {
+    top: 50%;
+    left: 50%;
+    background-color: #f1f1f1;
+    color: black;
+    font-size: 20px;
+    padding: 16px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+}
+    
+.my_btn:hover {
+    background-color: black;
+    color: white;
+}

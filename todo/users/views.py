@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
@@ -41,6 +41,6 @@ def login_user(request) -> HttpResponse:
     return render(request, 'users/login.html', context=context)
 
 
-def logout_user(request):
+def logout_user(request) -> HttpResponseRedirect | HttpResponsePermanentRedirect:
     logout(request)
     return redirect('users:register_user')
