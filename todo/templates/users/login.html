@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Регистрация{% endblock %}
+{% block title %}Вход в систему{% endblock %}
 
 {% block content %}
 <section class="vh-100 bg-image"
@@ -11,7 +11,7 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-4">
-                            <h2 class="text-uppercase text-center mb-5 text-muted">Создайте аккаунт</h2>
+                            <h2 class="text-uppercase text-center mb-5 text-muted">Вход в аккаунт</h2>
                             <form method="post">
                                 {% csrf_token %}
                                 
@@ -24,11 +24,11 @@
 
                                 <div class="d-flex justify-content-center">
                                 <button  type="submit" data-mdb-button-init
-                                    data-mdb-ripple-init class="btn btn-lg gradient-custom-4 text-body">Регистрация</button>
+                                    data-mdb-ripple-init class="btn btn-lg gradient-custom-4 text-body">Войти</button>
                                 </div>
 
-                                <p class="text-center text-muted mt-5 mb-0">Уже есть аккаунт? <a href="{% url 'users:login_user' %}"
-                                    class="fw-bold text-body"><u>Войдите здесь</u></a></p>
+                                <p class="text-center text-muted mt-5 mb-0">Ещё нет аккаунта? <a href="{% url 'users:register_user' %}"
+                                    class="fw-bold text-body"><u>Создайте здесь</u></a></p>
                             </form>
                         </div>
                     </div>
