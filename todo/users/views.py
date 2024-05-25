@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm
@@ -42,4 +42,5 @@ def login_user(request) -> HttpResponse:
 
 
 def logout_user(request):
-    pass
+    logout(request)
+    return redirect('users:register_user')
