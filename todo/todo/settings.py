@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #other
+    'bootstrap5',
+    
     #my_app
     'index',
 ]
