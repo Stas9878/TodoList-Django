@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 
-def index(request) -> HttpResponse:
+def my_task(request) -> HttpResponse:
     if not request.user.is_authenticated:
         return redirect('users:register_user')
-
-    return redirect('tasks:my_task')
+    
+    return render(request, 'index.html')

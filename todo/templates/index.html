@@ -1,7 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Главная{% endblock %}
 
-{% block content %}
-    Главная
+{% block head %}
 {% endblock %}
+
+{% block content %}
+
+
+{% include 'sidebar.html' %}
+
+<div class="wrapper">
+    <div class="left_block">
+        <!-- {% include 'index_utils/first_col.html' %} -->
+    </div>
+
+    <div class="right_block">
+        {% include 'index_utils/second_col.html' %}
+    </div>
+</div>
+
+    
+{% endblock %}
+
