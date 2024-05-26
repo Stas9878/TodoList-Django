@@ -46,7 +46,31 @@
     color: white;
 }
 
+html {
+    background-color: #AC8968
+}
+
+
 /* index */
+
+
+.page-todo .dashboard {
+    background: #eaa15e;
+    margin-bottom: 1px
+}
+
+.dashboard.span{
+    background: #865D36;
+    padding: 2px 10px;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px
+}
+
+.page-todo .dashtask {
+    border-left: 2px solid #eaa15e
+}
+
 div.wrapper {
     margin-left:auto;
     width:1250px; /* left_block + right_block + зазор */
@@ -65,12 +89,6 @@ div.right_block {
     left: 10px;
 }
 
-body{
-    margin-bottom: 60px;
-    background:#eee;
-    
-    }
-    
     .page-todo .tasks {
         background: #fff;
         padding: 1;
@@ -87,7 +105,7 @@ body{
     }
     
     .page-todo .priority.high {
-        background: #fffdfd;
+        background: #f6acac;
         margin-bottom: 1px
     }
     
@@ -145,7 +163,7 @@ body{
     
     .page-todo .task .time {
         display: inline-block;
-        width: 15%;
+        width: 28%;
         padding: 10px 10px 10px 0;
         font-size: 12px;
         text-align: right;
@@ -155,7 +173,7 @@ body{
     }
     
     .page-todo .task .time .date {
-        font-size: 18px;
+        font-size: 12px;
         margin-bottom: 5px
     }
     
@@ -455,8 +473,9 @@ body{
 
 
 /* sidebar */
+
 body {
-    background-color: #fbfbfb;
+    background-color: #877667;
   }
   @media (min-width: 991.98px) {
     main {
@@ -464,7 +483,6 @@ body {
     }
   }
   
-  /* Sidebar */
   .sidebar {
     position: fixed;
     top: 0;
@@ -474,6 +492,7 @@ body {
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
     width: 240px;
     z-index: 600;
+    
   }
   
   @media (max-width: 991.98px) {

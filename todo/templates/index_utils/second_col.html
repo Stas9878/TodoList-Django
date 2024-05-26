@@ -2,133 +2,53 @@
     <div class="col-sm-auto tasks">
             <div class="task-list">
                 <h1>Задачи</h1>
-                <div class="priority high"><span>Важные</span></div>
-                <div class="task high">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-                <div class="task high">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div>1 day</div>
-                    </div>
-                </div>
-                <div class="task high">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-                <div class="task high last">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div>1 day</div>
-                    </div>
-                </div>
-        
-                <div class="priority medium"><span>Средние</span></div>
-        
-                <div class="task medium">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-                <div class="task medium last">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-        
-                <div class="priority low"><span>Не важные</span></div>
-        
-                <div class="task low">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-                <div class="task low">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-                <div class="task low">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-                <div class="task low">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-                <div class="task low">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
-                <div class="task low">
-                    <div class="desc">
-                        <div class="title">Lorem Ipsum</div>
-                        <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                    </div>
-                    <div class="time">
-                        <div class="date">Jun 1, 2012</div>
-                        <div> 1 day</div>
-                    </div>
-                </div>
+                {% if H %}
+                    <div class="priority high"><span>Важные</span></div>
+                    {% for h in H %}
+                        <div class="task high {% if forloop.last %} last {% endif %}">
+                            <div class="desc">
+                                <div class="title">{{ h.title|truncatechars:30 }}</div>
+                                <div>{{ h.description|truncatechars:255 }}</div>
+                            </div>
+                            <div class="time">
+                                <div class="date">{{ h.due_date }}</div>
+                                <div> 1 day</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                {% if M %}
+                    <div class="priority medium"><span>Средние</span></div>
+                    {% for m in M %}
+                        <div class="task medium {% if forloop.last %} last {% endif %}">
+                            <div class="desc">
+                                <div class="title">{{ m.title|truncatechars:30 }}</div>
+                                <div>{{ m.description|truncatechars:255 }}</div>
+                            </div>
+                            <div class="time">
+                                <div class="date">{{ m.due_date }}</div>
+                                <div> 1 day</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% if L %}
+                    <div class="priority low"><span>Не важные</span></div>
+                    {% for l in L %}
+                        <div class="task low {% if forloop.last %} last {% endif %}">
+                            <div class="desc">
+                                <div class="title">{{ l.title|truncatechars:30 }}</div>
+                                <div>{{ l.description }}</div>
+                            </div>
+                            <div class="time">
+                                <div class="date">{{ l.due_date|truncatechars:255 }}</div>
+                                <div> 1 day</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 <div class="clearfix"></div>		
             </div>		
         </div>
