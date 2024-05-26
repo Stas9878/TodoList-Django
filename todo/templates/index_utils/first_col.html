@@ -2,7 +2,39 @@
 <div class="col-sm-auto tasks">
     <div class="task-list">
         <h1>Центр управления</h1>
-    
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% for i in create_task_form %}
+                {% if i.name == 'description' %}
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">{{ i.label }}</label>
+                    <textarea name="{{ i.name }}" class="form-control" id="{{ i.name }}" rows="3"></textarea>
+                  </div>
+                
+                {% elif i.name != 'importance' %}
+                    <div class="form-group">
+                        <label for="{{ i.name }}">{{ i.label }}</label>
+                        <input name="{{ i.name }}" min="2024-05-26" type="{{ i.widget_type }}" class="form-control" id="{{ i.name }}" placeholder="{{ i.help_text }}">
+                    </div>
+
+                {% else %}
+                    <label for="{{ i.name }}">{{ i.label }}</label>
+                    <select name="{{ i.name }}" class="form-select" aria-label="Default select example">
+                        <option selected>Выбери приоритет задачи</option>
+                        <option value="H">Важно</option>
+                        <option value="M">Средне</option>
+                        <option value="L">Не важно</option>
+                    </select>
+                {% endif %}
+                <br>
+            {% endfor %}
+            <button type="submit" class="btn btn-outline-success">Добавить</button>
+          </form>
+         
+        <br>
+        <br>
         <div class="dashboard"><span class="dashboard span">Создать задачу</span></div>
 
         <div class="dashtask task">

@@ -4,9 +4,9 @@ from django.contrib.auth import get_user_model
 
 class Task(models.Model):
     IMPORTANCE_CHOICES = {
-        ('H', 'Важные'),
-        ('M', 'Средние'),
-        ('L', 'Не важные')
+        ('H', 'Важно'),
+        ('M', 'Средне'),
+        ('L', 'Не важно'),
     }
 
     title = models.CharField(max_length=150)
