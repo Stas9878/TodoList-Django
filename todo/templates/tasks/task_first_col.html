@@ -1,0 +1,41 @@
+<div class="container page-todo bootstrap snippets bootdeys">
+    <div class="col-sm-auto tasks">
+        <div class="task-list">
+            <h2>Задача</h2>
+                <ul class="list-group list-group-flush">
+                    <p>
+                        <strong>Важность:</strong>
+                        <li class="list-group-item">{{ task.get_importance_display }}</li>
+                    </p>
+                    <p>
+                        <strong>Название:</strong>
+                        <li class="list-group-item">{{ task.title }}</li>
+                    </p>
+                    <p>
+                        <strong>Описание:</strong>
+                        <li class="list-group-item">{{ task.description }}</li>
+                    </p>
+                    <p>
+                        <strong>Дата создания:</strong>
+                        <li class="list-group-item">{{ task.creation_date }}</li>
+                    </p>
+                    <p>
+                        <strong>Планируемая дата завершения:</strong>
+                        <li class="list-group-item">{{ task.due_date }}</li>
+                    </p>
+                    <p>
+                        <strong>Дней осталось:</strong>
+                        <li class="list-group-item">{{ task.days_left }}</li>
+                    </p>
+                    <p><strong>Выполнена:</strong><li class="list-group-item">{% if task.completed %}Да{% else %}Нет{% endif %}</li></p>
+                </ul>
+                
+                <a href="/">Редактировать</a>       
+             
+            <br>
+            <br>
+            <div class="dashboard"><span class="dashboard span">Добавить подзадачу</span></div>
+            <div class="clearfix"></div>		
+        </div>		
+    </div>
+    </div>

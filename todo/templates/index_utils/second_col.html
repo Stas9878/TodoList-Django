@@ -7,7 +7,9 @@
                     {% for h in H %}
                         <div class="task high {% if forloop.last %} last {% endif %}">
                             <div class="desc">
-                                <div class="title">{{ h.title|truncatechars:30 }}</div>
+                                <div class="title">
+                                    <a href="{% url 'tasks:get_task' request.user h.id %}">{{ h.title|truncatechars:30 }}</a>
+                                </div>
                                 <div>{{ h.description|truncatechars:255 }}</div>
                             </div>
                             <div class="time">
@@ -23,7 +25,9 @@
                     {% for m in M %}
                         <div class="task medium {% if forloop.last %} last {% endif %}">
                             <div class="desc">
-                                <div class="title">{{ m.title|truncatechars:30 }}</div>
+                                <div class="title">
+                                    <a href="{% url 'tasks:get_task' request.user m.id %}">{{ h.title|truncatechars:30 }}</a>
+                                </div>
                                 <div>{{ m.description|truncatechars:255 }}</div>
                             </div>
                             <div class="time">
@@ -39,7 +43,9 @@
                     {% for l in L %}
                         <div class="task low {% if forloop.last %} last {% endif %}">
                             <div class="desc">
-                                <div class="title">{{ l.title|truncatechars:30 }}</div>
+                                <div class="title">
+                                    <a href="{% url 'tasks:get_task' request.user l.id %}">{{ h.title|truncatechars:30 }}</a>
+                                </div>
                                 <div>{{ l.description|truncatechars:255 }}</div>
                             </div>
                             <div class="time">

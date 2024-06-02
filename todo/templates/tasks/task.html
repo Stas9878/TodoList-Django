@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Таска{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+<div class="bg_sidebar">
+    {% include 'sidebar.html' %}
+</div>
+
+
+<div class="wrapper">
+    <div class="left_block">
+        {% include 'tasks/task_first_col.html' %}
+    </div>
+
+    <div class="right_block">
+        {% include 'index_utils/second_col.html' %}
+    </div>
+</div>
+{% endblock %}
+

@@ -40,11 +40,13 @@
         {% for task in upcoming_tasks %}
             <div class="dashtask task">
                 <div class="desc">
-                    <div class="title">{{ task.title }}</div>
+                    <div class="title">
+                       <a href="{% url 'tasks:get_task' request.user task.id %}">{{ task.title|truncatechars:30 }}</a>
+                    </div>
                     <div>{{ task.description|truncatechars:255 }}</div>
                 </div>
                 <div class="time">
-                    <div class="date">Jun 1, 2012</div>
+                    <div class="date">{{ task.due_date }}</div>
                     <div>Осталось дней: {{ task.days_left }}</div>
                     <div>{{ task.get_importance_display }}</div>
                 </div>

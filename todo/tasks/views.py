@@ -1,10 +1,11 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import date
 from .utils import get_importance
 from .forms import CreateTaskForm
 from .models import Task
+
 
 @login_required(login_url="users:login")
 def my_task(request) -> HttpResponse:
@@ -35,3 +36,13 @@ def my_task(request) -> HttpResponse:
 
     return render(request, 'index.html', context=context)
 
+
+def get_task(request, username, task_id) -> HttpResponse:
+    if request.user.username != username:
+        return redirect('/')
+    task = Task.objects.filter(id=task_id, user__username=username)[0]
+    context = {
+        'task': task
+    }
+    print(type(task))
+    return render(request, 'tasks/task.html', context=context)
