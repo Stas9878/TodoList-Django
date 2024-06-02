@@ -17,6 +17,7 @@ class Task(models.Model):
                   default="L")
     creation_date = models.DateField(auto_now=True)
     due_date = models.DateField(blank=True, null=True)
+    days_left = models.IntegerField(blank=True, null=False, default=1)
     completed = models.BooleanField(default=False)
 
     def __str__(self) -> str:

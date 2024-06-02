@@ -1,12 +1,12 @@
-from django.db.models.query import QuerySet
+from .models import Task
 
 
-def get_importance(tasks: QuerySet) -> tuple[list, list, list]:
+def get_importance(tasks: Task) -> tuple[list, list, list]:
     h = []
     m = []
     l = []
     
-    for task in tasks:
+    for task in tasks.order_by('-due_date'):
         if task.importance == 'H':
             h.append(task)
         elif task.importance == 'M':

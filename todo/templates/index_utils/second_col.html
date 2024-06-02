@@ -12,7 +12,7 @@
                             </div>
                             <div class="time">
                                 <div class="date">{{ h.due_date }}</div>
-                                <div> 1 day</div>
+                                <div> Осталось дней: {{ h.days_left }}</div>
                             </div>
                         </div>
                     {% endfor %}
@@ -28,7 +28,7 @@
                             </div>
                             <div class="time">
                                 <div class="date">{{ m.due_date }}</div>
-                                <div> 1 day</div>
+                                <div>Осталось дней: {{ m.days_left }}</div>
                             </div>
                         </div>
                     {% endfor %}
@@ -40,11 +40,11 @@
                         <div class="task low {% if forloop.last %} last {% endif %}">
                             <div class="desc">
                                 <div class="title">{{ l.title|truncatechars:30 }}</div>
-                                <div>{{ l.description }}</div>
+                                <div>{{ l.description|truncatechars:255 }}</div>
                             </div>
                             <div class="time">
-                                <div class="date">{{ l.due_date|truncatechars:255 }}</div>
-                                <div> 1 day</div>
+                                <div class="date">{{ l.due_date }}</div>
+                                <div>Осталось дней: {{ l.days_left }}</div>
                             </div>
                         </div>
                     {% endfor %}

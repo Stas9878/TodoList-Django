@@ -1,7 +1,7 @@
 <div class="container page-todo bootstrap snippets bootdeys">
 <div class="col-sm-auto tasks">
     <div class="task-list">
-        <h1>Центр управления</h1>
+        <h2>Добавить задачу</h2>
 
         <form method="post">
             {% csrf_token %}
@@ -35,29 +35,21 @@
          
         <br>
         <br>
-        <div class="dashboard"><span class="dashboard span">Создать задачу</span></div>
+        <div class="dashboard"><span class="dashboard span">Ближайшие задачи</span></div>
 
-        <div class="dashtask task">
-            <div class="desc">
-                <div class="title">Lorem Ipsum</div>
-                <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
+        {% for task in upcoming_tasks %}
+            <div class="dashtask task">
+                <div class="desc">
+                    <div class="title">{{ task.title }}</div>
+                    <div>{{ task.description|truncatechars:255 }}</div>
+                </div>
+                <div class="time">
+                    <div class="date">Jun 1, 2012</div>
+                    <div>Осталось дней: {{ task.days_left }}</div>
+                    <div>{{ task.get_importance_display }}</div>
+                </div>
             </div>
-            <div class="time">
-                <div class="date">Jun 1, 2012</div>
-                <div> 1 day</div>
-            </div>
-        </div>
-        <div class="dashtask task">
-            <div class="desc">
-                <div class="title">Lorem Ipsum</div>
-                <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-            </div>
-            <div class="time">
-                <div class="date">Jun 1, 2012</div>
-                <div> 1 day</div>
-            </div>
-        </div>
-        
+        {% endfor %}
         <div class="clearfix"></div>		
     </div>		
 </div>

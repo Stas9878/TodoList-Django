@@ -1,6 +1,7 @@
 from django import forms
 from .models import Task, SubTask
 
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 

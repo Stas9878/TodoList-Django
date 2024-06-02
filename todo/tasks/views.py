@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from datetime import date
 from .utils import get_importance
 from .forms import CreateTaskForm
 from .models import Task
@@ -14,19 +15,22 @@ def my_task(request) -> HttpResponse:
         create_task_form = CreateTaskForm(request.POST)
         if create_task_form.is_valid():
             data = create_task_form.cleaned_data
-            
-            task = Task.objects.create(user=request.user, **data)
-        
-    create_task_form = CreateTaskForm()
+            days_left = data['due_date'] - date.today()
+            task = Task.objects.create(user=request.user, **data, days_left=days_left.days)
+            return redirect(request.path) 
+    else:
+        create_task_form = CreateTaskForm()
 
     tasks = request.user.task.all()
     high, middle, low = get_importance(tasks)
+    upcoming_tasks = request.user.task.order_by('-due_date')[:5]
     context = {
         'tasks': tasks,
         'create_task_form': create_task_form,
         'H': high,
         'M': middle,
-        'L': low
+        'L': low,
+        'upcoming_tasks': upcoming_tasks
     }
 
     return render(request, 'index.html', context=context)
