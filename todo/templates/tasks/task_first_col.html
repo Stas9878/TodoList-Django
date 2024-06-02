@@ -2,36 +2,55 @@
     <div class="col-sm-auto tasks">
         <div class="task-list">
             <h2>Задача</h2>
-                <ul class="list-group list-group-flush">
-                    <p>
-                        <strong>Важность:</strong>
-                        <li class="list-group-item">{{ task.get_importance_display }}</li>
-                    </p>
-                    <p>
-                        <strong>Название:</strong>
-                        <li class="list-group-item">{{ task.title }}</li>
-                    </p>
-                    <p>
-                        <strong>Описание:</strong>
-                        <li class="list-group-item">{{ task.description }}</li>
-                    </p>
-                    <p>
-                        <strong>Дата создания:</strong>
-                        <li class="list-group-item">{{ task.creation_date }}</li>
-                    </p>
-                    <p>
-                        <strong>Планируемая дата завершения:</strong>
-                        <li class="list-group-item">{{ task.due_date }}</li>
-                    </p>
-                    <p>
-                        <strong>Дней осталось:</strong>
-                        <li class="list-group-item">{{ task.days_left }}</li>
-                    </p>
-                    <p><strong>Выполнена:</strong><li class="list-group-item">{% if task.completed %}Да{% else %}Нет{% endif %}</li></p>
-                </ul>
-                
-                <a href="/">Редактировать</a>       
-             
+            <form method="post">
+                {% csrf_token %}
+    
+                {% for i in update_form %}
+                    {% if i.name == 'description' %}
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">{{ i.label }}</label>
+                            <textarea  name="{{ i.name }}" class="form-control" id="{{ i.name }}" rows="3">{{ task.description }}</textarea>
+                        </div>
+                        
+
+                    {% elif i.name in disable_list %}
+                        <div class="form-group">
+                            <label for="{{ i.name }}">{{ i.label }}</label>
+                            <input disabled
+                                    class="form-control"
+                                    name="{{ i.name }}" 
+                                    type="{{ i.widget_type }}" 
+                                    placeholder="{% if i.name == 'days_left' %}{{ task.days_left }}{% else %}{{ task.creation_d }}{% endif %}">
+                        </div>
+                    {% elif i.name != 'importance' %}
+                        <div class="form-group">
+                            <label for="{{ i.name }}">{{ i.label }}</label>
+                            <input  value="{{ task.title }}"
+                                    name="{{ i.name }}" 
+                                    min="{{ min_data }}" 
+                                    type="{{ i.widget_type }}" 
+                                    class="form-control" 
+                                    id="{{ i.name }}" 
+                                    placeholder="{{ i.help_text }}">
+                        </div>
+    
+                    {% else %}
+                        <label for="{{ i.name }}">{{ i.label }}</label>
+                        <select name="{{ i.name }}" class="form-select" aria-label="Default select example">
+                            <option selected>{{ task.get_importance_display }}</option>
+                            <option value="H">Важно</option>
+                            <option value="M">Средне</option>
+                            <option value="L">Не важно</option>
+                        </select>
+                    
+                    {% endif %}
+                    
+                    <br>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-outline-warning">Изменить</button>
+              </form>
+               
             <br>
             <br>
             <div class="dashboard"><span class="dashboard span">Добавить подзадачу</span></div>
