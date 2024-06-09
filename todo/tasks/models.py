@@ -25,7 +25,7 @@ class Task(models.Model):
     
 
 class SubTask(models.Model):
-    title = models.CharField(max_length=150, default='1')
+    title = models.CharField(max_length=150)
     description = models.CharField(max_length=250)
     creation_date = models.DateField(auto_now=True)
     due_date = models.DateField(blank=True, null=True)

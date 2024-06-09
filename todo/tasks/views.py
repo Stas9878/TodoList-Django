@@ -1,10 +1,10 @@
-from django.http import HttpResponse, HttpResponseNotAllowed
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import date, datetime
 from .utils import get_importance
-from .forms import CreateTaskForm, UpdateTaskForm
-from .models import Task
+from .forms import CreateTaskForm, UpdateTaskForm, CreateSubTaskForm
+from .models import Task, SubTask
 
 
 @login_required(login_url="users:login")
@@ -43,6 +43,7 @@ def my_task(request) -> HttpResponse:
     return render(request, 'index.html', context=context)
 
 
+@login_required(login_url="users:login")
 def get_task(request, username, task_id) -> HttpResponse:
     if request.user.username != username:
         return redirect('/')
@@ -71,10 +72,44 @@ def get_task(request, username, task_id) -> HttpResponse:
     update_form = UpdateTaskForm()
     
     task = Task.objects.filter(id=task_id, user__username=username)[0]
+    subtasks = task.subtask_set.all()
+    
     context = {
         'task': task,
         'update_form': update_form,
         'disable_list': ['creation_d', 'days_left'],
+        'due_date': task.due_date.strftime(format='%Y-%m-%d'),
+        'subtasks': subtasks
     }
     
     return render(request, 'tasks/task.html', context=context)
+
+
+@login_required(login_url="users:login")
+def add_subtask(request, username, task_id):
+    if request.user.username != username:
+        return redirect('/')
+    
+    if request.method == 'POST':
+        form = CreateSubTaskForm(request.POST)
+        print(form.is_valid(), request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            
+            SubTask.objects.create(
+                parent_task=data['parent_task'], 
+                title=data['title'],
+                description=data['description'],
+            )
+        
+        return redirect(request.path)
+
+    form = CreateSubTaskForm()
+    
+    user_tasks = Task.objects.filter(user=request.user)
+    context = {
+        'form': form,
+        'user_tasks': user_tasks
+    }
+
+    return render(request, 'tasks/add_subtask.html', context=context)

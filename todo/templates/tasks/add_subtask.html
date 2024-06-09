@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Добавить подзадачу{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+<div class="bg_sidebar">
+    {% include 'sidebar.html' %}
+</div>
+
+
+<div class="wrapper">
+    <div class="left_block">
+        <div class="container page-todo bootstrap snippets bootdeys">
+            <div class="col-sm-auto tasks">
+                <div class="task-list">
+                    <h2>Добавить подзадачу</h2>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+            
+                        {% for i in form %}
+                            {% if i.name == 'description' %}
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">{{ i.label }}</label>
+                                <textarea name="{{ i.name }}" class="form-control" id="{{ i.name }}" rows="3"></textarea>
+                              </div>
+                            
+                            {% elif i.name == 'parent_task' %}
+                                <label for="{{ i.name }}">{{ i.label }}</label>
+                                <select name="{{ i.name }}" class="form-select" aria-label="Default select example">
+                                    <option value="{{ task.importance }}"> {{ task.get_importance_display }}</option>
+                                    {% for t in user_tasks %}
+                                        <option value="{{ t.id }}">{{ t.title }} {{ t.get_importance_display }}</option>
+                                    {% endfor %}
+                                </select>
+                            
+                            {% else%}
+                            <div class="form-group">
+                                <label for="{{ i.name }}">{{ i.label }}</label>
+                                <input name="{{ i.name }}" type="{{ i.widget_type }}" class="form-control" id="{{ i.name }}">
+                            </div>
+                            {% endif %}
+
+                            <br>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-outline-success">Добавить</button>
+                    </form>
+    
+                    <div class="clearfix"></div>	 
+                </div>       	
+            </div>		
+        </div>
+    </div>
+
+    <div class="right_block">
+    </div>
+</div>
+{% endblock %}
+
+

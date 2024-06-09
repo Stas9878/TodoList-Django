@@ -49,12 +49,11 @@
                 {% endfor %}
 
                 <button type="submit" class="btn btn-outline-warning">Изменить</button>
-              </form>
-               
-            <br>
-            <br>
-            <div class="dashboard"><span class="dashboard span">Добавить подзадачу</span></div>
-            <div class="clearfix"></div>		
+              </form>	
         </div>		
     </div>
-    </div>
+</div>
+
+<script>
+    document.getElementById("due_date").defaultValue = "{{ due_date }}";
+</script>
