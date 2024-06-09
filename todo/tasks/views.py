@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from datetime import date
+from datetime import date, datetime
 from .utils import get_importance
 from .forms import CreateTaskForm, UpdateTaskForm
 from .models import Task
@@ -37,7 +37,7 @@ def my_task(request) -> HttpResponse:
         'H': high,
         'M': middle,
         'L': low,
-        'upcoming_tasks': upcoming_tasks
+        'upcoming_tasks': upcoming_tasks,
     }
 
     return render(request, 'index.html', context=context)
@@ -51,27 +51,30 @@ def get_task(request, username, task_id) -> HttpResponse:
         task = Task.objects.get(id=task_id)
         
         request.POST._mutable = True
-        
+
         if not request.POST['due_date']:
             request.POST['due_date'] = task.due_date
-        print(request.POST)
-        importance_choice = {'Важно': 'H', 'Средне': 'M', 'Не важно': 'L'}
-        request.POST['importance'] = importance_choice[request.POST['importance']]
-        # request.POST['days_left'] = request.POST['due_date'] - request.POST['creation_d']
+        else:
+            request.POST['due_date'] = datetime.strptime(request.POST['due_date'], '%Y-%m-%d')
+
+        request.POST['importance'] = request.POST['importance']
+        request.POST['days_left'] = (request.POST['due_date'].date() - date.today()).days
+        request.POST['creation_d'] = task.creation_date
         
         update_form = UpdateTaskForm(request.POST, instance=task)
+
         if update_form.is_valid():
             update_form.save()
             
         return redirect(request.path)
 
     update_form = UpdateTaskForm()
+    
     task = Task.objects.filter(id=task_id, user__username=username)[0]
     context = {
         'task': task,
         'update_form': update_form,
         'disable_list': ['creation_d', 'days_left'],
-        'min_data': date.today()
     }
     
     return render(request, 'tasks/task.html', context=context)

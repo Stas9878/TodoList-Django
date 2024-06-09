@@ -24,7 +24,7 @@ class CreateTaskForm(forms.ModelForm):
 
 
 class UpdateTaskForm(forms.ModelForm):
-    creation_d = forms.DateField(label='Дата создания')
+    creation_d = forms.DateField(label='Дата создания', required=False)
     class Meta:
         model = Task
         fields = ('title', 'description', 'creation_d', 'due_date', 'importance', 'days_left')

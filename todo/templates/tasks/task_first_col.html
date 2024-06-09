@@ -27,7 +27,7 @@
                             <label for="{{ i.name }}">{{ i.label }}</label>
                             <input  value="{{ task.title }}"
                                     name="{{ i.name }}" 
-                                    min="{{ min_data }}" 
+                                    min="{% now 'Y-m-d' %}" 
                                     type="{{ i.widget_type }}" 
                                     class="form-control" 
                                     id="{{ i.name }}" 
@@ -37,7 +37,7 @@
                     {% else %}
                         <label for="{{ i.name }}">{{ i.label }}</label>
                         <select name="{{ i.name }}" class="form-select" aria-label="Default select example">
-                            <option selected>{{ task.get_importance_display }}</option>
+                            <option value="{{ task.importance }}"> {{ task.get_importance_display }}</option>
                             <option value="H">Важно</option>
                             <option value="M">Средне</option>
                             <option value="L">Не важно</option>

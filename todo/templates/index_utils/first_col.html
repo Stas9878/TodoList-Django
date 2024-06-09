@@ -16,7 +16,7 @@
                 {% elif i.name != 'importance' %}
                     <div class="form-group">
                         <label for="{{ i.name }}">{{ i.label }}</label>
-                        <input name="{{ i.name }}" min="2024-05-26" type="{{ i.widget_type }}" class="form-control" id="{{ i.name }}" placeholder="{{ i.help_text }}">
+                        <input name="{{ i.name }}" min="{% now 'Y-m-d' %}" type="{{ i.widget_type }}" class="form-control" id="{{ i.name }}" placeholder="{{ i.help_text }}">
                     </div>
 
                 {% else %}
