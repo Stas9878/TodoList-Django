@@ -13,8 +13,14 @@
                                 <div>{{ h.description|truncatechars:255 }}</div>
                             </div>
                             <div class="time">
-                                <div class="date">{{ h.due_date }}</div>
-                                <div> Осталось дней: {{ h.days_left }}</div>
+                                <div class="date">До: {{ h.due_date }}</div>
+                                <div>
+                                    {% if h.days_left >= 0 %} 
+                                        Осталось дней: {{ h.days_left }}
+                                    {% else %}
+                                        <p style="color: red;">Просрочено: {{ h.days_left }}</p>
+                                    {% endif%}
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -26,13 +32,19 @@
                         <div class="task medium {% if forloop.last %} last {% endif %}">
                             <div class="desc">
                                 <div class="title">
-                                    <a href="{% url 'tasks:get_task' request.user m.id %}">{{ h.title|truncatechars:30 }}</a>
+                                    <a href="{% url 'tasks:get_task' request.user m.id %}">{{ m.title|truncatechars:30 }}</a>
                                 </div>
                                 <div>{{ m.description|truncatechars:255 }}</div>
                             </div>
                             <div class="time">
-                                <div class="date">{{ m.due_date }}</div>
-                                <div>Осталось дней: {{ m.days_left }}</div>
+                                <div class="date">До: {{ m.due_date }}</div>
+                                <div>
+                                    {% if m.days_left >= 0 %} 
+                                        Осталось дней: {{ m.days_left }}
+                                    {% else %}
+                                        <p style="color: red;">Просрочено: {{ m.days_left }}</p>
+                                    {% endif%}
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -44,13 +56,19 @@
                         <div class="task low {% if forloop.last %} last {% endif %}">
                             <div class="desc">
                                 <div class="title">
-                                    <a href="{% url 'tasks:get_task' request.user l.id %}">{{ h.title|truncatechars:30 }}</a>
+                                    <a href="{% url 'tasks:get_task' request.user l.id %}">{{ l.title|truncatechars:30 }}</a>
                                 </div>
                                 <div>{{ l.description|truncatechars:255 }}</div>
                             </div>
                             <div class="time">
-                                <div class="date">{{ l.due_date }}</div>
-                                <div>Осталось дней: {{ l.days_left }}</div>
+                                <div class="date">До: {{ l.due_date }}</div>
+                                <div>
+                                    {% if l.days_left >= 0 %} 
+                                        Осталось дней: {{ l.days_left }}
+                                    {% else %}
+                                        <p style="color: red;">Просрочено: {{ l.days_left }}</p>
+                                    {% endif%}
+                                </div>
                             </div>
                         </div>
                     {% endfor %}

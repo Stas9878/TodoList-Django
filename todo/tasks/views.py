@@ -23,8 +23,14 @@ def my_task(request) -> HttpResponse:
         create_task_form = CreateTaskForm()
 
     tasks = request.user.task.all()
+
+    for i in range(len(tasks)):
+        tasks[i].days_left = (tasks[i].due_date - date.today()).days
+        tasks[i].save()
+    
     high, middle, low = get_importance(tasks)
     upcoming_tasks = request.user.task.order_by('-due_date')[:5]
+
     context = {
         'tasks': tasks,
         'create_task_form': create_task_form,
