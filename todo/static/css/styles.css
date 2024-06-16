@@ -474,6 +474,10 @@ div.right_block {
 
 /* sidebar */
 
+.logo_img {
+    margin-left: 55px;
+}
+
 
 @media (min-width: 991.98px) {
 main {
