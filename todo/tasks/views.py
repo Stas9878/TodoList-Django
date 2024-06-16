@@ -109,7 +109,8 @@ def add_subtask(request, username, task_id):
     user_tasks = Task.objects.filter(user=request.user)
     context = {
         'form': form,
-        'user_tasks': user_tasks
+        'user_tasks': user_tasks,
+        'task_id': int(task_id)
     }
 
     return render(request, 'tasks/add_subtask.html', context=context)

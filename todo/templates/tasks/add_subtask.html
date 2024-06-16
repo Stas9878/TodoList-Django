@@ -33,9 +33,9 @@
                             {% elif i.name == 'parent_task' %}
                                 <label for="{{ i.name }}">{{ i.label }}</label>
                                 <select name="{{ i.name }}" class="form-select" aria-label="Default select example">
-                                    <option value="{{ task.importance }}"> {{ task.get_importance_display }}</option>
+                                    <!-- <option value="{{ task.importance }}">{{ task.get_importance_display }}</option> -->
                                     {% for t in user_tasks %}
-                                        <option value="{{ t.id }}">{{ t.title }} {{ t.get_importance_display }}</option>
+                                        <option value="{{ t.id }}" {% if t.id == task_id %}selected{% endif %}>{{ t.title }} {{ t.get_importance_display }}</option>
                                     {% endfor %}
                                 </select>
                             

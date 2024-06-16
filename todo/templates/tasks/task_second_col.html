@@ -10,8 +10,18 @@
             </div>
 
             <br>
-            
-            <div><span class="activity-done">Всего: {{ subtasks|length }}</span></div>
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                    <span class="activity-done">Всего: {{ subtasks|length }}</span>
+                  </div>
+                  <div class="col-sm">
+                  </div>
+                  <div class="col-sm-3">
+                    Выполнена:
+                  </div>
+                </div>
+              </div>
             {% for sub in subtasks %}
                 <div class="container mt-1">
                     <div class="row">
@@ -34,7 +44,9 @@
                                         </div>
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="d-flex flex-column mr-2">
-                                                <span class="date-time">{{ sub.completed }}</span>
+                                                <span class="date-time">
+                                                    {% if sub.completed %}Да{% else %}Нет{% endif %}
+                                                </span>
                                         </div>
                                     </li>
                                 </ul>
