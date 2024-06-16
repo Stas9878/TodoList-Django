@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import date, datetime
@@ -85,14 +85,19 @@ def get_task(request, username, task_id) -> HttpResponse:
     return render(request, 'tasks/task.html', context=context)
 
 
+def delete_task(request, task_id) -> HttpResponseRedirect:
+    task = Task.objects.get(id=task_id)
+    task.delete()
+    return redirect('/')
+
+
 @login_required(login_url="users:login")
-def add_subtask(request, username, task_id):
+def add_subtask(request, username, task_id) -> HttpResponseRedirect | HttpResponse:
     if request.user.username != username:
         return redirect('/')
     
     if request.method == 'POST':
         form = CreateSubTaskForm(request.POST)
-        print(form.is_valid(), request.POST)
         if form.is_valid():
             data = form.cleaned_data
             
@@ -114,3 +119,5 @@ def add_subtask(request, username, task_id):
     }
 
     return render(request, 'tasks/add_subtask.html', context=context)
+
+

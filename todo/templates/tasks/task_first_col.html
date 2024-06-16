@@ -47,8 +47,21 @@
                     
                     <br>
                 {% endfor %}
-
-                <button type="submit" class="btn btn-outline-warning">Изменить</button>
+                
+                <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <button type="submit" class="btn btn-outline-warning">Изменить</button>
+                      </div>
+                      <div class="col-6">
+                      </div>
+                      <div class="col-2">
+                        <a onclick="confirm_delete();">
+                            <button type="button" class="btn btn-outline-danger">Удалить</button>
+                        </a>
+                      </div>
+                    </div>
+                </div>
               </form>	
         </div>		
     </div>
@@ -56,4 +69,13 @@
 
 <script>
     document.getElementById("due_date").defaultValue = "{{ due_date }}";
+</script>
+
+<script>
+    function confirm_delete(){
+        var r = confirm("Удалить задачу?");
+        if (r == true) {
+            window.location.href="{% url 'tasks:delete_task' task.id %}"
+        }
+    }
 </script>
