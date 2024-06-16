@@ -478,6 +478,11 @@ div.right_block {
     margin-left: 55px;
 }
 
+.profile_img{
+    height: 30px;
+    width: 30px;
+}
+
 
 @media (min-width: 991.98px) {
 main {
@@ -563,4 +568,22 @@ margin-left: 3px;
 .delete {
     width: 23px;
     margin-left: 10%
+}
+
+/* Profile */
+
+.main_text {
+    margin-left: 50%;
+    max-width: 70%;
+}
+
+.user_profile {
+    margin-left: 218px;
+    width: 70%;
+}
+
+.stats {
+    padding: 1;
+    margin: 0px 50px 30px;
+    margin-top: -20px;
 }

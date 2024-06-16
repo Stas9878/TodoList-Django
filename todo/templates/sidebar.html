@@ -48,7 +48,7 @@
         </button>
   
         <!-- Brand -->
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img
             src="{% static 'img/logo.png' %}"
             height="25"
@@ -74,22 +74,10 @@
   
         <!-- Right links -->
         <ul class="navbar-nav ms-auto d-flex flex-row">
-          <!-- Avatar -->
-          <li class="nav-item dropdown">
-            <a href="#">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-                class="rounded-circle"
-                height="32"
-                alt="Avatar"
-                loading="lazy"
-              />
+          <!-- Profile -->
+            <a href="{% url 'user_profile:user_profile' request.user.username %}">
+              <img class="profile_img" src="{% static 'img/profile.png' %}">
             </a>
-            <ul
-              class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="navbarDropdownMenuLink"> 
-            </ul>
-          </li>
         </ul>
       </div>
       <!-- Container wrapper -->
