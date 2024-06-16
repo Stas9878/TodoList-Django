@@ -107,7 +107,11 @@ def add_subtask(request, username, task_id) -> HttpResponseRedirect | HttpRespon
                 description=data['description'],
             )
         
-        return redirect(request.path)
+        return redirect(
+            'tasks:get_task', 
+            username=username,
+            task_id=task_id
+        )
 
     form = CreateSubTaskForm()
     
