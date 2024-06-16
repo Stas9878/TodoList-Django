@@ -29,7 +29,7 @@ def my_task(request) -> HttpResponse:
         tasks[i].save()
     
     high, middle, low = get_importance(tasks)
-    upcoming_tasks = request.user.task.order_by('-due_date')[:5]
+    upcoming_tasks = request.user.task.filter(days_left__gte=0).order_by('-due_date')[:5]
 
     context = {
         'tasks': tasks,
@@ -73,13 +73,13 @@ def get_task(request, username, task_id) -> HttpResponse:
     
     task = Task.objects.filter(id=task_id, user__username=username)[0]
     subtasks = task.subtask_set.all()
-    
+
     context = {
         'task': task,
         'update_form': update_form,
         'disable_list': ['creation_d', 'days_left'],
         'due_date': task.due_date.strftime(format='%Y-%m-%d'),
-        'subtasks': subtasks
+        'subtasks': subtasks,
     }
     
     return render(request, 'tasks/task.html', context=context)
@@ -121,3 +121,7 @@ def add_subtask(request, username, task_id) -> HttpResponseRedirect | HttpRespon
     return render(request, 'tasks/add_subtask.html', context=context)
 
 
+def delete_subtask(request, subtask_id) -> HttpResponseRedirect:
+    subtask = SubTask.objects.get(id=subtask_id)
+    subtask.delete()
+    return redirect(request.META.get('HTTP_REFERER'))

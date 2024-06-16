@@ -555,3 +555,8 @@ margin-left: 3px;
     height: 10%;
     overflow:auto;
   }
+
+.delete {
+    width: 20px;
+    margin-left: 95%
+}
