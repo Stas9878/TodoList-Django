@@ -8,7 +8,25 @@
         </div>	
     </div>
     <div class="col-sm-auto stats">
-        my_stat
+        <h3>Задачи</h3>
+        <br>
+        {% for key, values in tasks.items %}
+            {% if key == 'most_subtasks' %}
+                <p>
+                    {{ values.0 }} <a href="{% url 'tasks:get_task' request.user values.1.pk %}">{{ values.1.title }}</a>. Количество - {{ values.1.subtasks }}
+                </p>
+            {% else %}
+                <p>{{ values.0 }} {{ values.1 }}</p>
+            {% endif %}
+
+        {% endfor %}
+        
+        <h3>Подзадачи</h3>
+        <br>
+        {% for key, values in subtasks.items %}
+            <p>{{ values.0 }} {{ values.1 }}</p>
+        {% endfor %}
+        
     </div>
 </div>
 
