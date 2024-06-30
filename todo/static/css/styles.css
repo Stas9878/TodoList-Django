@@ -587,3 +587,12 @@ margin-left: 3px;
     margin: 0px 50px 30px;
     margin-top: -20px;
 }
+
+.horizontal-gradient {
+	margin: 20px 0;
+	padding: 6px;
+	height: 6px;
+	border: none;
+    border-radius: 10px; 
+	background: linear-gradient(45deg, #d06e13, #ffffff);
+}

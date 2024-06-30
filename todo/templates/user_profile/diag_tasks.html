@@ -1,0 +1,19 @@
+<script src="https://www.google.com/jsapi"></script>
+  <script>
+   google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+     ['Статус', 'Количество'],
+     ['Выполненных', '{{ tasks.count_done_tasks }}'],
+     ['Не выполненных', '{{ tasks.not_done_tasks }}'],
+    
+    ]);
+    var options = {
+     title: 'Всего задач: {{ tasks.all_tasks }}',
+     is3D: true,
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('air_tasks'));
+     chart.draw(data, options);
+   }
+</script>

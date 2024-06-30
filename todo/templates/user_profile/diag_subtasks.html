@@ -1,0 +1,19 @@
+<script src="https://www.google.com/jsapi"></script>
+  <script>
+   google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+     ['Статус', 'Количество'],
+     ['Выполненных', '{{ subtasks.done_subtasks }}'],
+     ['Не выполненных', '{{ subtasks.not_done_subtasks }}'],
+    
+    ]);
+    var options = {
+     title: 'Всего подзадач: {{ subtasks.all_subtasks }}',
+     is3D: true,
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('air_subtasks'));
+     chart.draw(data, options);
+   }
+</script>
