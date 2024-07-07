@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponsePermanentRedirect, HttpRespons
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
+from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm
@@ -28,11 +29,15 @@ def login_user(request) -> HttpResponse:
         form = LoginForm(data=request.POST)
         if form.is_valid():
             username = form.data['username']
+            password = form.data['password']
             user = get_user_model().objects.filter(Q(username=username) | Q(email=username))
             
-            if user:
-                login(request, user[0])
-                return redirect('index:index')
+            if user.exists():
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    return redirect('index:index')
+        return redirect(request.path)
 
     form = LoginForm()
     context = {
