@@ -71,13 +71,19 @@
         <a href="/">
             <img class="search" src = "{% static 'svg/search.svg' %}"/>
         </a>
-  
+        
         <!-- Right links -->
         <ul class="navbar-nav ms-auto d-flex flex-row">
           <!-- Profile -->
-            <a href="{% url 'user_profile:user_profile' request.user.username %}">
+          <div class="dropdown">
+            <a href="#">
               <img class="profile_img" src="{% static 'img/profile.png' %}">
             </a>
+            <div class="dropdown-content rounded">
+              <a href="{% url 'user_profile:user_profile' request.user.username %}">Профиль</a>
+              <a href="{% url 'users:logout_user' %}">Выйти</a>
+            </div>
+          </div>
         </ul>
       </div>
       <!-- Container wrapper -->

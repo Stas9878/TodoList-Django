@@ -4,6 +4,6 @@ from django.shortcuts import render, redirect
 
 def index(request) -> HttpResponse:
     if not request.user.is_authenticated:
-        return redirect('users:register_user')
+        return redirect('users:login_user')
 
     return redirect('tasks:my_task')

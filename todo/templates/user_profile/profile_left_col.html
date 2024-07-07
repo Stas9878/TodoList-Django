@@ -1,4 +1,5 @@
 {% load static %}
+{% load user_profile %}
 
 <div class="container page-todo bootstrap snippets bootdeys">
     <div class="col-sm-auto tasks">
@@ -6,34 +7,86 @@
             <h3>Мои данные</h3>
         </div>
 
-        <div class="stats">
-            {% include 'user_profile/carousel.html' %}
-        </div>
-        <div class="dashboard rounded">
-            <span class="dashboard span rounded">Статистика</span> 
-        </div>	
+        <div class="stats">{% include 'user_profile/carousel.html' %}</div>
     </div>
-    <div class="col-sm-auto stats">
-        <br>
-        
-        <hr class="horizontal-gradient">
 
-        <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                <h3>Задачи</h3>
-                <div id="air_tasks" style="width: 100%; height: 495px;">
-                    {% include 'user_profile/diag_tasks.html' %}
+    <div>
+        <div class="dashboard rounded profile_span">
+            <span class="dashboard span rounded">Личные данные</span>
+        </div>
+
+        <div class="col-sm-auto stats">
+            <br />
+            <hr class="horizontal-gradient" />
+            <form method="post">
+                {% csrf_token %} 
+                
+                {% for row in form %}
+                    <div class="form-group">
+                        <label for="{{ row.name }}">{{ row.label }}</label>
+                        <input
+                            value="{% user_value request.user row %}"
+                            class="form-control"
+                            name="{{ row.name }}"
+                            type="{{ row.widget_type }}"
+                            placeholder="{% if row.name == 'days_left' %}{{ task.days_left }}{% else %}{{ task.creation_d }}{% endif %}"
+                        />
+                    </div>
+
+                    <br />
+                {% endfor %}
+                <button
+                    id="btn_change"
+                    onclick="confirm_change();"
+                    type="button"
+                    class="btn btn-outline-warning">
+                    Сохранить изменения
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <br>
+
+    <div>
+        <div class="dashboard rounded profile_span">
+            <span class="dashboard span rounded">Статистика</span>
+        </div>
+
+        <div class="col-sm-auto stats">
+            <br />
+
+            <hr class="horizontal-gradient" />
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <h3>Задачи</h3>
+                        <div id="air_tasks" style="width: 100%; height: 495px">
+                            {% include 'user_profile/diag_tasks.html' %}
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <h3>Подзадачи</h3>
+                        <div
+                            id="air_subtasks"
+                            style="width: 100%; height: 495px"
+                        >
+                            {% include 'user_profile/diag_subtasks.html' %}
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-sm">
-                <h3>Подзадачи</h3>
-                <div id="air_subtasks" style="width: 100%; height: 495px;">
-                    {% include 'user_profile/diag_subtasks.html' %}
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
     </div>
 </div>
 
+<script>
+    function confirm_change(){
+        var r = confirm("Вы уверены что хотите изменить свои данные?");
+        if (r == true) {
+            const bt = document.getElementById('btn_change');
+            bt.setAttribute('type', 'submit');
+        }
+    }
+</script>

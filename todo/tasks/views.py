@@ -7,7 +7,7 @@ from .forms import CreateTaskForm, UpdateTaskForm, CreateSubTaskForm
 from .models import Task, SubTask
 
 
-@login_required(login_url="users:login")
+@login_required(login_url="users:login_user")
 def my_task(request) -> HttpResponse:
     if not request.user.is_authenticated:
         return redirect('users:register_user')
@@ -43,8 +43,8 @@ def my_task(request) -> HttpResponse:
     return render(request, 'index.html', context=context)
 
 
-@login_required(login_url="users:login")
-def get_task(request, username, task_id) -> HttpResponse:
+@login_required(login_url="users:login_user")
+def get_task(request, username, task_id=None) -> HttpResponse:
     if request.user.username != username:
         return redirect('/')
     
@@ -91,7 +91,7 @@ def delete_task(request, task_id) -> HttpResponseRedirect:
     return redirect('/')
 
 
-@login_required(login_url="users:login")
+@login_required(login_url="users:login_user")
 def add_subtask(request, username, task_id) -> HttpResponseRedirect | HttpResponse:
     if request.user.username != username:
         return redirect('/')

@@ -37,7 +37,7 @@
         <div class="carousel-caption d-none d-md-block background-carousel-text rounded">
           <h5>Задача с наибольшим числом подзадач</h5>
             <p>
-                <a class="link-info text-decoration-none" href="{% url 'tasks:get_task' request.user tasks.most_subtasks.pk %}">
+                <a class="link-info text-decoration-none" href="{% url 'tasks:get_task' request.user.username tasks.most_subtasks.pk %}">
                     *клик*
                 </a>          
             </p>

@@ -28,10 +28,10 @@ def login_user(request) -> HttpResponse:
         form = LoginForm(data=request.POST)
         if form.is_valid():
             username = form.data['username']
-            user = get_user_model().objects.filter(Q(username=username) | Q(email=username))[0]
+            user = get_user_model().objects.filter(Q(username=username) | Q(email=username))
             
             if user:
-                login(request, user)
+                login(request, user[0])
                 return redirect('index:index')
 
     form = LoginForm()
@@ -43,4 +43,4 @@ def login_user(request) -> HttpResponse:
 
 def logout_user(request) -> HttpResponseRedirect | HttpResponsePermanentRedirect:
     logout(request)
-    return redirect('users:register_user')
+    return redirect('users:login_user')
