@@ -1,9 +1,9 @@
 <div class="container page-todo bootstrap snippets bootdeys">
-    <div class="col-sm-auto tasks">
+    <div class="col-sm-auto tasks rounded">
             <div class="task-list">
                 <h1>Задачи</h1>
                 {% if H %}
-                    <div class="priority high"><span>Важные</span></div>
+                    <div class="priority high rounded"><span class="rounded">Важные</span></div>
                     {% for h in H %}
                         <div class="task high {% if forloop.last %} last {% endif %}">
                             <div class="desc">
@@ -27,7 +27,7 @@
                 {% endif %}
                 
                 {% if M %}
-                    <div class="priority medium"><span>Средние</span></div>
+                    <div class="priority medium rounded"><span class="rounded">Средние</span></div>
                     {% for m in M %}
                         <div class="task medium {% if forloop.last %} last {% endif %}">
                             <div class="desc">
@@ -51,7 +51,7 @@
                 {% endif %}
 
                 {% if L %}
-                    <div class="priority low"><span>Не важные</span></div>
+                    <div class="priority low rounded"><span class="rounded">Не важные</span></div>
                     {% for l in L %}
                         <div class="task low {% if forloop.last %} last {% endif %}">
                             <div class="desc">
