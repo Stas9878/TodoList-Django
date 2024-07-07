@@ -44,7 +44,7 @@ def my_task(request) -> HttpResponse:
 
 
 @login_required(login_url="users:login_user")
-def get_task(request, username, task_id=None) -> HttpResponse:
+def get_task(request, username, task_id) -> HttpResponse:
     if request.user.username != username:
         return redirect('/')
     

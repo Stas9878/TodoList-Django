@@ -22,6 +22,6 @@ class Statistics:
     def most_subtasks(self) -> int:
         max_sub = Task.objects.filter(user=self.user).values('pk', 'title').annotate(
             subtasks=Count('subtask')
-        ).order_by('subtasks').last()
-        return max_sub
+        ).order_by('subtasks')
+        return max_sub.last()
     
