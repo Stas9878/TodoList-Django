@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="container page-todo bootstrap snippets bootdeys">
     <div class="col-sm-auto tasks">
         <div class="task-list main_text">
@@ -8,18 +10,13 @@
         </div>	
     </div>
     <div class="col-sm-auto stats">
-        <h3>Задачи</h3>
         <br>
-        <h6>Задача с наибольшим числом подзадач: </h6>
-        <p>
-            Название: 
-            <a href="{% url 'tasks:get_task' request.user tasks.most_subtasks.pk %}">
-                {{ tasks.most_subtasks.title }}
-            </a>
-        </p>
-        <p>Количество: {{ tasks.most_subtasks.subtasks }}</p>
+
+        {% include 'user_profile/carousel.html' %}
         
         <hr class="horizontal-gradient">
+
+        <h3>Задачи</h3>
 
         <div id="air_tasks" style="width: 700px; height: 500px;">
             {% include 'user_profile/diag_tasks.html' %}

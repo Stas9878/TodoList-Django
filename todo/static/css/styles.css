@@ -596,3 +596,8 @@ margin-left: 3px;
     border-radius: 10px; 
 	background: linear-gradient(45deg, #d06e13, #ffffff);
 }
+
+.background-carousel-text {
+    background: #232737;
+    
+}
