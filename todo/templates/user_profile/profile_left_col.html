@@ -5,30 +5,35 @@
         <div class="task-list main_text">
             <h3>Мои данные</h3>
         </div>
+
+        <div class="stats">
+            {% include 'user_profile/carousel.html' %}
+        </div>
         <div class="dashboard rounded">
             <span class="dashboard span rounded">Статистика</span> 
         </div>	
     </div>
     <div class="col-sm-auto stats">
         <br>
-
-        {% include 'user_profile/carousel.html' %}
         
         <hr class="horizontal-gradient">
 
-        <h3>Задачи</h3>
-
-        <div id="air_tasks" style="width: 700px; height: 500px;">
-            {% include 'user_profile/diag_tasks.html' %}
-        </div>
-
-        <hr class="horizontal-gradient">
-
-        <h3>Подзадачи</h3>
-
-        <div id="air_subtasks" style="width: 700px; height: 500px;">
-            {% include 'user_profile/diag_subtasks.html' %}
-        </div>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <h3>Задачи</h3>
+                <div id="air_tasks" style="width: 100%; height: 495px;">
+                    {% include 'user_profile/diag_tasks.html' %}
+                </div>
+              </div>
+              <div class="col-sm">
+                <h3>Подзадачи</h3>
+                <div id="air_subtasks" style="width: 100%; height: 495px;">
+                    {% include 'user_profile/diag_subtasks.html' %}
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
 </div>
 

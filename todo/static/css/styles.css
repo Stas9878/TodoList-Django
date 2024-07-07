@@ -573,19 +573,23 @@ margin-left: 3px;
 /* Profile */
 
 .main_text {
-    margin-left: 50%;
+    margin-left: 42%;
     max-width: 70%;
 }
 
 .user_profile {
-    margin-left: 218px;
-    width: 70%;
+    margin-left: 15.3%;
+    border-left-width: 75%;
+
 }
 
 .stats {
     padding: 1;
     margin: 0px 50px 30px;
+    margin-left: 4%;
     margin-top: -20px;
+    margin-bottom: 15px;
+    margin-right: 2%;
 }
 
 .horizontal-gradient {

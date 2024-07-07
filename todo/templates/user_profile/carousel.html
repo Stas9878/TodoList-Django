@@ -7,10 +7,10 @@
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
+    <div class="carousel-inner rounded">
+      <div class="carousel-item active rounded">
         <img src="{% static 'img/all_tasks.png' %}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block background-carousel-text">
+        <div class="carousel-caption d-none d-md-block background-carousel-text rounded">
             <h5>Список всех задач</h5>
             <p>Взгляните на список всех своих задач, чтобы ничего не забыть.</p>
             <p>
@@ -20,21 +20,21 @@
             </p> 
         </div>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item rounded">
         <img src="{% static 'img/all_subtasks.png' %}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block background-carousel-text">
+        <div class="carousel-caption d-none d-md-block background-carousel-text rounded">
             <h5>Список всех подзадач</h5>
             <p>Взгляните на список всех своих подзадач, чтобы знать к каким задачам они относятся.</p>
-            <p>
+             <p>
                 <a class="link-info text-decoration-none" href="">
                     *клик*
                 </a>    
             </p> 
         </div>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item rounded">
         <img src="{% static 'img/most_subtasks.png' %}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block background-carousel-text">
+        <div class="carousel-caption d-none d-md-block background-carousel-text rounded">
           <h5>Задача с наибольшим числом подзадач</h5>
             <p>
                 <a class="link-info text-decoration-none" href="{% url 'tasks:get_task' request.user tasks.most_subtasks.pk %}">
