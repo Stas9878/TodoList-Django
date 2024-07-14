@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = ['users.authenticate.EmailBackend']
+AUTHENTICATION_BACKENDS = ['users.authenticate.EmailAndUsernameBackend']
 
 
 # Internationalization

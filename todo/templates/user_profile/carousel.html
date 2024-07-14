@@ -15,7 +15,8 @@
             <h5>Список всех задач</h5>
             <p>Взгляните на список всех своих задач, чтобы ничего не забыть.</p>
             <p>
-                <a class="link-info text-decoration-none" href="">
+                <a class="link-info text-decoration-none"
+                  href="{% url 'tasks:my_tasks' %}">
                     *клик*
                 </a>    
             </p> 
@@ -27,7 +28,8 @@
             <h5>Список всех подзадач</h5>
             <p>Взгляните на список всех своих подзадач, чтобы знать к каким задачам они относятся.</p>
              <p>
-                <a class="link-info text-decoration-none" href="">
+                <a class="link-info text-decoration-none"
+                  href="{% url 'tasks:all_subtasks' %}">
                     *клик*
                 </a>    
             </p> 

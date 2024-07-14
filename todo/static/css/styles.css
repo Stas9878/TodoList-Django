@@ -598,12 +598,25 @@ margin-left: 3px;
 .box {
     width: 350px;
     height: 10%;
-    overflow:auto;
+    overflow: auto;
   }
 
 .delete {
     width: 23px;
-    margin-left: 10%
+    margin-left: 10%;
+}
+
+.custom-width {
+    float: right;
+    width: 120%;
+    margin-right: -9%;
+    max-width: 800px;
+    display: block;
+}
+
+.delete_all_sub {
+    display: inline-block;
+    margin-top: 7.5%;
 }
 
 /* Profile */

@@ -7,17 +7,17 @@ from .forms import CreateTaskForm, UpdateTaskForm, CreateSubTaskForm
 from .models import Task, SubTask
 
 
-@login_required(login_url="users:login_user")
-def my_task(request) -> HttpResponse:
+@login_required
+def my_tasks(request) -> HttpResponse:
     if not request.user.is_authenticated:
-        return redirect('users:register_user')
+        return redirect('users:login_user')
     
     if request.method == 'POST':
         create_task_form = CreateTaskForm(request.POST)
         if create_task_form.is_valid():
             data = create_task_form.cleaned_data
             days_left = data['due_date'] - date.today()
-            task = Task.objects.create(user=request.user, **data, days_left=days_left.days)
+            Task.objects.create(user=request.user, **data, days_left=days_left.days)
             return redirect(request.path) 
     else:
         create_task_form = CreateTaskForm()
@@ -43,7 +43,7 @@ def my_task(request) -> HttpResponse:
     return render(request, 'index.html', context=context)
 
 
-@login_required(login_url="users:login_user")
+@login_required
 def get_task(request, username, task_id) -> HttpResponse:
     if request.user.username != username:
         return redirect('/')
@@ -85,13 +85,22 @@ def get_task(request, username, task_id) -> HttpResponse:
     return render(request, 'tasks/task.html', context=context)
 
 
+@login_required
 def delete_task(request, task_id) -> HttpResponseRedirect:
     task = Task.objects.get(id=task_id)
     task.delete()
     return redirect('/')
 
 
-@login_required(login_url="users:login_user")
+@login_required
+def all_subtasks(request):
+    subtasks = SubTask.objects.filter(parent_task__user=request.user)
+    context = {
+        'subtasks': subtasks.order_by('-creation_date', 'parent_task__title')
+    }
+    return render(request, 'tasks/all_subtasks.html', context=context)
+
+@login_required()
 def add_subtask(request, username, task_id) -> HttpResponseRedirect | HttpResponse:
     if request.user.username != username:
         return redirect('/')
@@ -125,6 +134,7 @@ def add_subtask(request, username, task_id) -> HttpResponseRedirect | HttpRespon
     return render(request, 'tasks/add_subtask.html', context=context)
 
 
+@login_required
 def delete_subtask(request, subtask_id) -> HttpResponseRedirect:
     subtask = SubTask.objects.get(id=subtask_id)
     subtask.delete()

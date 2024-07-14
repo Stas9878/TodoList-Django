@@ -6,4 +6,4 @@ def index(request) -> HttpResponse:
     if not request.user.is_authenticated:
         return redirect('users:login_user')
 
-    return redirect('tasks:my_task')
+    return redirect('tasks:my_tasks')
