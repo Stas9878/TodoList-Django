@@ -581,13 +581,39 @@ margin-bottom: 12px;
 
 
 .list li {
-list-style: none;
-padding: 10px;
-border: 1px solid #e3dada;
-margin-top: 12px;
-border-radius: 5px;
-background: #fff;
+    list-style: none;
+    padding: 10px;
+    border: 1px solid #e3dada;
+    margin-top: 12px;
+    border-radius: 5px;
+    background: #fff;
 }
+
+.h_task li{
+    list-style: none;
+    padding: 10px;
+    border: 2px solid #f86c6b;
+    margin-top: 12px;
+    border-radius: 5px;
+    background: #fff;
+}
+.m_task li{
+    list-style: none;
+    padding: 10px;
+    border: 2px solid #f8cb00;
+    margin-top: 12px;
+    border-radius: 5px;
+    background: #fff;
+}
+.l_task li{
+    list-style: none;
+    padding: 10px;
+    border: 2px solid #4dbd74;
+    margin-top: 12px;
+    border-radius: 5px;
+    background: #fff;
+}
+
 
 .checkicon {
 color: green;
