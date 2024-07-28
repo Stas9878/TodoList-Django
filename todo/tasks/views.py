@@ -20,7 +20,7 @@ def my_tasks(request) -> HttpResponse:
             data = create_task_form.cleaned_data
             days_left = data['due_date'] - date.today()
             Task.objects.create(user=request.user, **data, days_left=days_left.days)
-            return redirect(request.path) 
+        return redirect(request.path) 
     else:
         create_task_form = CreateTaskForm()
 

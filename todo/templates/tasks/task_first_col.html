@@ -19,7 +19,7 @@
                             <input disabled
                                     class="form-control"
                                     name="{{ i.name }}" 
-                                    type="{{ i.widget_type }}" 
+                                    type="{% if i.widget_type != 'number' %}{{ i.widget_type }}{% endif %}" 
                                     placeholder="{% if i.name == 'days_left' %}{{ task.days_left }}{% else %}{{ task.creation_d }}{% endif %}">
                         </div>
                     {% elif i.name != 'importance' %}
@@ -55,7 +55,7 @@
                       </div>
                       <div class="col-6">
                       </div>
-                      <div class="col-2">
+                      <div class="col-2 right-float">
                         <a onclick="confirm_delete();">
                             <button type="button" class="btn btn-outline-danger">Удалить</button>
                         </a>
