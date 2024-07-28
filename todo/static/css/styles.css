@@ -92,7 +92,7 @@ div.right_block {
     .page-todo .tasks {
         background: #fff;
         padding: 1;
-        margin: 0px 10px 30px;
+        margin: 0px 10px 100%;
     }
     
     .page-todo .task-list {
@@ -520,9 +520,16 @@ main {
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
+
+/* Search */
+
 .search {
-    width: 17px;
-    margin-left: 30%
+    width: 20px;
+}
+
+.search_button {
+    border: none;
+    background: none;
 }
 
 /* Dropdown Button */

@@ -1,0 +1,19 @@
+{% load static %}
+
+<form method="get" action="{% url 'tasks:search_tasks' %}" class="d-none d-md-flex input-group w-auto my-auto">
+    <input
+      autocomplete="off"
+      type="search"
+      class="form-control rounded"
+      placeholder='Поиск по задачам'
+      style="min-width: 225px;"
+      name="search_field"
+    />
+    <span class="border-0"><i class="fas fa-search"></i></span>
+  
+    <button class="search_button rounded" type="submit">
+        <img class="search" src="{% static 'svg/search.svg' %}"/>
+    </button>
+</form>
+  
+  

@@ -1,6 +1,8 @@
 from django.http import HttpResponse, HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
+from django.db.models import Q
 from datetime import date, datetime
 from .utils import get_importance
 from .forms import CreateTaskForm, UpdateTaskForm, CreateSubTaskForm
@@ -90,6 +92,33 @@ def delete_task(request, task_id) -> HttpResponseRedirect:
     task = Task.objects.get(id=task_id)
     task.delete()
     return redirect('/')
+
+
+@login_required
+def search_tasks(request):
+    search_query = request.GET.get('search_field')
+    if search_query:
+        tasks = Task.objects.filter(
+            Q(title__icontains=search_query) | Q(description__icontains=search_query),
+            user=request.user
+        )
+    else:
+        tasks = Task.objects.filter(user=request.user)
+
+    context = {
+        'tasks': tasks.order_by('-creation_date', 'title')
+    }
+
+    return render(request, 'tasks/search/search_tasks.html', context)
+
+
+@login_required
+def all_tasks(request):    
+    tasks = Task.objects.filter(user=request.user)
+    context = {
+        'tasks': tasks
+    }
+    return render(request, 'tasks/all_tasks.html', context=context)
 
 
 @login_required
